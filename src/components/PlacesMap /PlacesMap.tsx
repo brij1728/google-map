@@ -67,6 +67,8 @@ export const PlacesMap = () => {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   });
 
+  const [activeMarker, setActiveMarker] = useState(null);
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_map, setMap] = useState<google.maps.Map | null>(null);
 
@@ -86,6 +88,7 @@ export const PlacesMap = () => {
       zoom={1}
       onLoad={onLoad}
       onUnmount={onUnmount}
+      onClick={() => setActiveMarker(null)}
     >
       {placesData.map((p) => {
         return (
@@ -95,6 +98,8 @@ export const PlacesMap = () => {
             name={p.name}
             address={p.address}
             id={p.location_id}
+            activeMarker={activeMarker}
+            setActiveMarker={setActiveMarker}
           />
         );
       })}

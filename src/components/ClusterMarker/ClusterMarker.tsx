@@ -2,7 +2,6 @@ import { InfoWindow, Marker } from "@react-google-maps/api";
 
 import { Box } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import { useState } from "react";
 
 export type IProps = {
   position: {
@@ -13,12 +12,19 @@ export type IProps = {
   onUnmount?: () => void;
   name: string;
   address: string;
-  id: string;
+  id: string | null;
+  activeMarker: string | null;
+  setActiveMarker: (marker: any) => void | null;
 };
 
-export const ClusterMarker = ({ position, name, address, id }: IProps) => {
-  const [activeMarker, setActiveMarker] = useState(null);
-
+export const ClusterMarker = ({
+  position,
+  name,
+  address,
+  id,
+  activeMarker,
+  setActiveMarker,
+}: IProps) => {
   const handleActiveMarker = (marker: any) => {
     if (marker === activeMarker) {
       return;
@@ -27,11 +33,14 @@ export const ClusterMarker = ({ position, name, address, id }: IProps) => {
   };
   return (
     <>
-      <Marker position={position} onMouseOver={() => handleActiveMarker(id)}>
+      <Marker position={position} onClick={() => handleActiveMarker(id)}>
         <LocationOnOutlinedIcon color="primary" fontSize="large" />
       </Marker>
       {activeMarker === id ? (
-        <InfoWindow position={{ lat: position.lat, lng: position.lng }}>
+        <InfoWindow
+          position={{ lat: position.lat, lng: position.lng }}
+          onCloseClick={() => setActiveMarker(null)}
+        >
           <Box
             sx={{
               width: "fit-content",
