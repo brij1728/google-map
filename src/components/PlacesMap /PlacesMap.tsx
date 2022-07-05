@@ -67,6 +67,7 @@ export const PlacesMap = () => {
     googleMapsApiKey: GOOGLE_MAPS_API_KEY,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_map, setMap] = useState<google.maps.Map | null>(null);
 
   const onLoad = useCallback((map: google.maps.Map) => {
