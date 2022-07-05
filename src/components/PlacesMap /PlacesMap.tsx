@@ -1,7 +1,6 @@
-import { GoogleMap, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { useCallback, useState } from "react";
 
-import { Box } from "@mui/material";
 import { ClusterMarker } from "../ClusterMarker";
 import { GOOGLE_MAPS_API_KEY } from "./constants";
 import { PLACES_DATA } from "./__fixtures__/places.fixtures";
