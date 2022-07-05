@@ -94,6 +94,7 @@ export const PlacesMap = () => {
             position={{ lat: p.lat, lng: p.lng }}
             name={p.name}
             address={p.address}
+            id={p.location_id}
           />
         );
       })}
