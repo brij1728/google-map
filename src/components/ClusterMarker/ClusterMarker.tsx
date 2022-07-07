@@ -1,7 +1,7 @@
 import { InfoWindow, Marker } from "@react-google-maps/api";
 
 import { Box } from "@mui/material";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import restaurantSvgIcon from "../../assets/images/restaurant_icon.svg";
 
 export type IProps = {
   position: {
@@ -33,9 +33,13 @@ export const ClusterMarker = ({
   };
   return (
     <>
-      <Marker position={position} onClick={() => handleActiveMarker(id)}>
-        <LocationOnOutlinedIcon color="primary" fontSize="large" />
-      </Marker>
+      <Marker
+        position={position}
+        onClick={() => handleActiveMarker(id)}
+        icon={{
+          url: restaurantSvgIcon,
+        }}
+      />
       {activeMarker === id ? (
         <InfoWindow
           position={{ lat: position.lat, lng: position.lng }}
